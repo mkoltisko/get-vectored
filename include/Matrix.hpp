@@ -1,8 +1,8 @@
 
-#ifndef LINEARALGEBRA_MATRIX_H
-#define LINEARALGEBRA_MATRIX_H
+#ifndef LINEARALGEBRA_MATRIX_HPP
+#define LINEARALGEBRA_MATRIX_HPP
 
-#include "Vector.h"
+#include "Vector.hpp"
 #include <string>
 
 enum DIRECTION
@@ -15,7 +15,7 @@ enum DIRECTION
 
 class Matrix {
 public:
-    Matrix(int newRows = 3, int newCols = 3);
+    explicit Matrix(int newRows = 3, int newCols = 3);
     ~Matrix();
 
     int& operator[](int index); // return value at linear index
@@ -37,8 +37,8 @@ public:
     std::string to_string();
     void print();
 
-    inline const int getRowSize() { return m_nRows; }
-    inline const int getColSize() { return m_nCols; }
+    inline int getRowSize() const { return m_nRows; }
+    inline int getColSize() const { return m_nCols; }
 
 protected:
 
@@ -53,4 +53,4 @@ private:
 };
 
 
-#endif //LINEARALGEBRA_MATRIX_H
+#endif //LINEARALGEBRA_MATRIX_HPP

@@ -2,9 +2,9 @@
 // Created by User on 6/11/2022.
 //
 
-#include "Vector.h"
-#include "Properties.h"
-#include "Operations.h"
+#include "include/Vector.hpp"
+#include "include/Properties.hpp"
+#include "include/Operations.hpp"
 
 Vector::Vector(int size, bool orientation) :
     m_length(size),

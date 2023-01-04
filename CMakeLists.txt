@@ -1,18 +1,25 @@
+
 cmake_minimum_required(VERSION 3.17)
+
 project(LinearAlgebra)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LinearAlgebra
-        main.cpp
-        Vector.cpp
-        Vector.h
-        Properties.cpp
-        Properties.h
-        Operations.cpp
-        Operations.h
-        Matrix.cpp
-        Matrix.h)
+#        Vector.cpp
+#        include/Vector.hpp
+#        Properties.cpp
+#        include/Properties.hpp
+#        Operations.cpp
+#        include/Operations.hpp
+#        Matrix.cpp
+#        include/Matrix.hpp)
+
+add_executable(LinearAlgebra main.cpp)
+
+target_include_directories(LinearAlgebra PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(LinearAlgebra PUBLIC ${PROJECT_SOURCE_DIR}/source)
+
+
 
 #set(SOURCE
 ##        ${SOURCE}

@@ -1,13 +1,10 @@
-//
-// Created by User on 6/5/2022.
-//
 
-#ifndef LINEARALGEBRA_VECTOR_H
-#define LINEARALGEBRA_VECTOR_H
+#ifndef LINEARALGEBRA_VECTOR_HPP
+#define LINEARALGEBRA_VECTOR_HPP
 
 #include <string>
 #include <vector>
-#include "cassert"
+#include <cassert>
 
 enum ORIENTATION
 {
@@ -19,7 +16,7 @@ enum ORIENTATION
 class Vector {
 public:
 
-    Vector(int size, bool orientation = ORIENTATION::COL);
+    explicit Vector(int size, bool orientation = ORIENTATION::COL);
 
     ~Vector();
 
@@ -43,4 +40,4 @@ private:
 };
 
 
-#endif //LINEARALGEBRA_VECTOR_H
+#endif //LINEARALGEBRA_VECTOR_HPP

@@ -1,6 +1,6 @@
 
-#include "Operations.h"
-#include "Properties.h"
+#include "include/Operations.hpp"
+#include "include/Properties.hpp"
 
 float dot(Vector *first, Vector *second)
 {

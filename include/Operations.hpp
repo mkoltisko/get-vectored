@@ -1,16 +1,13 @@
-//
-// Created by User on 6/5/2022.
-//
 
-#ifndef LINEARALGEBRA_OPERATIONS_H
-#define LINEARALGEBRA_OPERATIONS_H
+#ifndef LINEARALGEBRA_OPERATIONS_HPP
+#define LINEARALGEBRA_OPERATIONS_HPP
 
 #include <string>
 #include <cmath>
 
-#include "Properties.h"
-#include "Vector.h"
-#include "Matrix.h"
+#include "Properties.hpp"
+#include "Vector.hpp"
+#include "Matrix.hpp"
 
 static const float PI = 3.14159F;
 
@@ -24,4 +21,4 @@ float angle(Vector *first, Vector *second);
 
 float determinant(Matrix pMatrix);
 
-#endif //LINEARALGEBRA_OPERATIONS_H
+#endif //LINEARALGEBRA_OPERATIONS_HPP

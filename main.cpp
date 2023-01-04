@@ -1,8 +1,9 @@
+
 #include <iostream>
 #include <string>
 
-#include "Vector.h"
-#include "Operations.h"
+#include "include/Vector.hpp"
+#include "include/Operations.hpp"
 
 void print(Vector *given) {
     for (int i = 0; i < given->size(); ++i) {
