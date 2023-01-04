@@ -1,8 +1,5 @@
-//
-// Created by User on 6/9/2022.
-//
 
-#include "include/Properties.hpp"
+#include "../include/Properties.hpp"
 
 bool isZeroVector(Vector* pVector)
 {

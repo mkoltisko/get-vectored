@@ -1,8 +1,8 @@
 
 #include <iostream>
 #include <sstream>
-#include "include/Matrix.hpp"
-#include "include/Properties.hpp"
+#include "../include/Matrix.hpp"
+#include "../include/Properties.hpp"
 
 
 Matrix::Matrix(int rowCount, int colCount)
