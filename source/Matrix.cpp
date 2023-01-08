@@ -86,4 +86,90 @@ float Matrix::determinant()
     return 0;
 }
 
+int &Matrix::operator[](int index)
+{
+    return m_pValues[index];
+}
+
+Matrix &Matrix::operator+(Matrix pMatrix)
+{
+    assert(m_nRows == pMatrix.getRowSize());
+    assert(m_nCols == pMatrix.getColSize());
+    for(int i = 0; i < m_nElements; ++i)
+    {
+        m_pValues[i] += pMatrix[i];
+    }
+    return *this;
+}
+
+Matrix &Matrix::operator-(Matrix pMatrix)
+{
+    assert(m_nRows == pMatrix.getRowSize());
+    assert(m_nCols == pMatrix.getColSize());
+    for(int i = 0; i < m_nElements; ++i)
+    {
+        m_pValues[i] -= pMatrix[i];
+    }
+    return *this;
+}
+
+Matrix &Matrix::operator*(Matrix pMatrix)
+{
+    assert(m_nRows == pMatrix.getRowSize());
+    assert(m_nCols == pMatrix.getColSize());
+    for(int i = 0; i < m_nElements; ++i)
+    {
+        m_pValues[i] *= pMatrix[i];
+    }
+    return *this;
+}
+
+void Matrix::insert(int value, uint32_t x, uint32_t y)
+{
+    assert(x < m_nRows);
+    assert(y < m_nCols);
+    m_pValues[(x * m_nCols) + y] = value;
+}
+
+void Matrix::append(Vector *pVector, DIRECTION direction)
+{
+    if(direction == TOP || direction == BOTTOM)
+    {
+        assert(pVector->m_orientation == ROW);
+        assert(pVector->size() == m_nCols);
+        ++m_nRows;
+    }
+
+    if(direction == LEFT || direction == RIGHT)
+    {
+        assert(pVector->m_orientation == COL);
+        assert(pVector->size() == m_nRows);
+        ++m_nCols;
+    }
+
+    m_nElements = m_nRows * m_nCols;
+    int* newValues = new int[m_nElements];
+
+    switch(direction)
+    {
+        case TOP:
+
+            break;
+
+        case BOTTOM:
+
+            break;
+
+        case LEFT:
+
+            break;
+
+        case RIGHT:
+
+            break;
+    }
+
+}
+
+
 

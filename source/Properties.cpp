@@ -5,7 +5,7 @@ bool isZeroVector(Vector* pVector)
 {
     for(int i = 0; i < pVector->size(); ++i)
     {
-        if(pVector->at(i) != 0)
+        if(pVector->get(i) != 0)
         {
             return false;
         }

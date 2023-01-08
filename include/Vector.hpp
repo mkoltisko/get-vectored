@@ -8,25 +8,31 @@
 
 enum ORIENTATION
 {
-    ROW = false,
     COL = true,
+    ROW = false,
 };
 
 
 class Vector {
 public:
 
-    explicit Vector(int size, bool orientation = ORIENTATION::COL);
+    explicit Vector(int size = 3, bool orientation = ORIENTATION::COL);
 
     ~Vector();
 
-    int& operator[](int index);
+    bool m_orientation;
+
+    std::string to_string();
+
+    int& operator[](uint32_t index);
     Vector& operator+(Vector pGiven);
     Vector& operator-(Vector pGiven);
     Vector& operator*(Vector pGiven);
 
-    int at(int index);
-    void fill(const int* newValues);
+    int get(unsigned int index);
+    void set(unsigned int index, int value);
+    void fill(const int* newValues, unsigned int length);
+
     void transpose();
     float magnitude();
 
@@ -36,7 +42,6 @@ private:
 
     int* m_pData;
     int m_length;
-    bool m_orientation; // true:= column vector; false:= row vector
 };
 
 

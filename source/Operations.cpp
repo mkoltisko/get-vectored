@@ -8,7 +8,7 @@ float dot(Vector *first, Vector *second)
 
     float sum = 0;
     for (int i = 0; i < first->size(); ++i) {
-        sum = sum + (first->at(i) * second->at(i));
+        sum = sum + (first->get(i) * second->get(i));
     }
     return sum;
 }
