@@ -5,20 +5,15 @@
 #include <string>
 #include <cmath>
 
+#include "LinearObject.hpp"
 #include "Properties.hpp"
-#include "Vector.hpp"
-#include "Matrix.hpp"
+#include "../HelpfulFunctions.hpp"
 
 static const float PI = 3.14159F;
 
-inline void transpose(Vector* pVector) { pVector->transpose(); };
+double dot(LinearObject* vecLeft, LinearObject* vecRight);
+LinearObject cross(LinearObject* vecLeft, LinearObject* vecRight);
+double angle(LinearObject* vecLeft, LinearObject* vecRight);
 
-inline void transpose(Matrix* pMatrix) { pMatrix->transpose(); };
-
-float dot(Vector *first, Vector *second);
-
-float angle(Vector *first, Vector *second);
-
-float determinant(Matrix pMatrix);
 
 #endif //LINEARALGEBRA_OPERATIONS_HPP

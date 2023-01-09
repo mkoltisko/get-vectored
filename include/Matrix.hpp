@@ -32,7 +32,6 @@ public:
     void swap(int x1, int y1, int x2, int y2);
 
     void insert(int value, uint32_t x, uint32_t y);   // explicit method to place value at position
-    void append(Vector* pVector, DIRECTION direction);  // add on new vector to directional side of matrix
 
     std::string to_string();
     void print();

@@ -3,8 +3,12 @@
 #define LINEARALGEBRA_VECTOR_HPP
 
 #include <string>
+#include <sstream>
 #include <vector>
-#include <cassert>
+
+#include "../HelpfulFunctions.hpp"
+#include "../include/Properties.hpp"
+#include "../include/Operations.hpp"
 
 enum ORIENTATION
 {
@@ -13,7 +17,7 @@ enum ORIENTATION
 };
 
 
-class Vector {
+class  Vector {
 public:
 
     explicit Vector(int size = 3, bool orientation = ORIENTATION::COL);

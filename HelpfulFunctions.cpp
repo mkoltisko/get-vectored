@@ -6,17 +6,22 @@ void print(const std::string &message)
     std::cout << message << std::endl;
 }
 
-void print(const Vector* v)
+void print(const LinearObject* matrix)
 {
-    assert(v != nullptr);
-    print(v->to_string());
+    assert(matrix != nullptr);
+    print(matrix->to_string());
 }
 
-void AssertMessage(bool condition, const std::string& message)
+void assertMessage(bool condition, const std::string& message)
 {
-    if (!condition)
+    if (condition)
+    {
+        // true so nothing else required
+        return;
+    }
+    if(!message.empty())
     {
         print(message);
-        assert(condition);
     }
+    assert(condition);
 }

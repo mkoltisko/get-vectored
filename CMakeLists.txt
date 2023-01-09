@@ -23,7 +23,9 @@ set( SOURCES
         SmokeTest/VectorTests/VectorTests.hpp
         SmokeTest/MatrixTests/MatrixTests.cpp
         SmokeTest/MatrixTests/MatrixTests.hpp
-)
+        source/LinearObject.cpp
+        include/LinearObject.hpp
+        )
 
 add_executable(LinearAlgebra ${SOURCES})
 

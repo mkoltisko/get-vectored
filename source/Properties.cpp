@@ -1,19 +1,14 @@
 
 #include "../include/Properties.hpp"
 
-bool isZeroVector(Vector* pVector)
+bool isZeroVector(LinearObject* pVector)
 {
     for(int i = 0; i < pVector->size(); ++i)
     {
-        if(pVector->get(i) != 0)
+        if((*pVector)[i] != 0)
         {
             return false;
         }
     }
     return true;
-}
-
-bool isSquareMatrix(Matrix* pMatrix)
-{
-    return pMatrix->getRowSize() == pMatrix->getColSize();
 }

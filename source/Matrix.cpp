@@ -33,19 +33,6 @@ void Matrix::swap(int x1, int y1, int x2, int y2)
     std::swap(this->at(x1, y1), this->at(x2, y2));
 }
 
-void Matrix::print()
-{
-    for(int i = 0; i < m_nElements; ++i)
-    {
-        std::cout << std::to_string(m_pValues[i]) << ' ';
-        if((i+1) % m_nCols == 0)
-        {
-            std::cout << "\n";
-        }
-    }
-    std::cout << std::endl;
-}
-
 std::string Matrix::to_string()
 {
     std::stringstream output;
@@ -72,18 +59,6 @@ void Matrix::transpose()
     delete [] m_pValues;
     std::swap(m_nRows, m_nCols);
     m_pValues = transposedValues;
-}
-
-void Matrix::inverse()
-{
-    assert(isSquareMatrix(this));   // TODO: pseudo-inverse for non-square matrices
-
-}
-
-float Matrix::determinant()
-{
-    assert(isSquareMatrix(this));   // TODO: pseudo-determinant for non-square matrices
-    return 0;
 }
 
 int &Matrix::operator[](int index)
@@ -129,46 +104,6 @@ void Matrix::insert(int value, uint32_t x, uint32_t y)
     assert(x < m_nRows);
     assert(y < m_nCols);
     m_pValues[(x * m_nCols) + y] = value;
-}
-
-void Matrix::append(Vector *pVector, DIRECTION direction)
-{
-    if(direction == TOP || direction == BOTTOM)
-    {
-        assert(pVector->m_orientation == ROW);
-        assert(pVector->size() == m_nCols);
-        ++m_nRows;
-    }
-
-    if(direction == LEFT || direction == RIGHT)
-    {
-        assert(pVector->m_orientation == COL);
-        assert(pVector->size() == m_nRows);
-        ++m_nCols;
-    }
-
-    m_nElements = m_nRows * m_nCols;
-    int* newValues = new int[m_nElements];
-
-    switch(direction)
-    {
-        case TOP:
-
-            break;
-
-        case BOTTOM:
-
-            break;
-
-        case LEFT:
-
-            break;
-
-        case RIGHT:
-
-            break;
-    }
-
 }
 
 

@@ -1,21 +1,30 @@
 
 #include "../include/Operations.hpp"
-#include "../include/Properties.hpp"
 
-float dot(Vector *first, Vector *second)
+double dot(LinearObject* vecLeft, LinearObject* vecRight)
 {
-    assert(first->size() == second->size());
+    assert(vecLeft->size() == vecRight->size());
 
-    float sum = 0;
-    for (int i = 0; i < first->size(); ++i) {
-        sum = sum + (first->get(i) * second->get(i));
+    double sum = 0;
+    for (int i = 0; i < vecLeft->size(); ++i) {
+        sum = sum + (vecLeft->get(i) * vecRight->get(i));
     }
     return sum;
 }
 
-float angle(Vector *first, Vector *second)
+LinearObject cross(LinearObject* vecLeft, LinearObject* vecRight)
 {
-    assert(!isZeroVector(first));
-    assert(!isZeroVector(second));
-    return acos(dot(first, second) / (first->magnitude() * second->magnitude())) * (180/PI);
+    assertMessage(vecLeft->size() == 3, "Cross Product is not well defined outside 3D");
+    assertMessage(vecRight->size() == 3, "Cross Product is not well defined outside 3D");
+
+    LinearObject result;
+
+    return result;
+}
+
+double angle(LinearObject* vecLeft, LinearObject* vecRight)
+{
+    assert(!isZeroVector(vecLeft));
+    assert(!isZeroVector(vecRight));
+    return acos(dot(vecLeft, vecRight) / (vecLeft->magnitude() * vecRight->magnitude())) * (180/PI);
 }
