@@ -66,7 +66,7 @@ Vector& Vector::operator+(Vector pGiven) {
     return *this;
 }
 
-std::string Vector::to_string() {
+std::string Vector::to_string() const {
     std::stringstream ss;
     for(int i = 0; i < size(); ++i)
     {

@@ -2,6 +2,9 @@
 #ifndef TESTFIXTURE_HPP
 #define TESTFIXTURE_HPP
 
+
+#include "../HelpfulFunctions.hpp"
+
 class TestFixture
 {
 public:

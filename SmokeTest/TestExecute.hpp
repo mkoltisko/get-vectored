@@ -2,9 +2,7 @@
 #ifndef TESTEXECUTE_HPP
 #define TESTEXECUTE_HPP
 
-#include "TestFixture.hpp"
-#include "VectorTests/VectorTests.hpp"
-
+template<typename TestSuite>
 class TestExecute
 {
 public:
@@ -17,13 +15,13 @@ public:
 
     inline void RunSuite()
     {
-        VectorTests::Instance()->registerTests();
+        TestSuite::Instance()->registerTests();
 
-        for(auto& unitTest : *VectorTests::m_TestList)
+        for(auto& unitTest : *TestSuite::m_TestList)
         {
-            VectorTests::Instance()->setup();
-            (VectorTests::Instance()->*unitTest)();
-            VectorTests::Instance()->teardown();
+            TestSuite::Instance()->setup();
+            (TestSuite::Instance()->*unitTest)();
+            TestSuite::Instance()->teardown();
         }
     }
 

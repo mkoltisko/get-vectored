@@ -1,6 +1,5 @@
 
 #include "VectorTests.hpp"
-#include "../../HelpfulFunctions.hpp"
 
 std::vector<VectorTests::UnitTest>* VectorTests::m_TestList = nullptr;
 
@@ -33,7 +32,7 @@ void VectorTests::teardown()
 
 void VectorTests::OperatorsTest()
 {
-    print(m_pVecOne);
+    print("Vector Test 1 called");
 //    m_pVecOne->set(0, 1);
 //    m_pVecTwo->set(2, 1);
 //
@@ -46,16 +45,16 @@ void VectorTests::OperatorsTest()
 
 void VectorTests::ProductsTest()
 {
-    print(m_pVecOne);
+    print("Vector Test 2 called");
 }
 
 void VectorTests::TransposeTest()
 {
-    print(m_pVecOne);
+    print("Vector Test 3 called");
 }
 
 void VectorTests::MagnitudeTest()
 {
-    print(m_pVecOne);
+    print("Vector Test 4 called");
 
 }

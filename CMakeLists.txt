@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 set( SOURCES
         main.cpp
+        HelpfulFunctions.cpp
+        HelpfulFunctions.hpp
         source/Vector.cpp
         include/Vector.hpp
         source/Properties.cpp
@@ -19,9 +21,11 @@ set( SOURCES
         SmokeTest/TestExecute.hpp
         SmokeTest/VectorTests/VectorTests.cpp
         SmokeTest/VectorTests/VectorTests.hpp
-        HelpfulFunctions.hpp)
+        SmokeTest/MatrixTests/MatrixTests.cpp
+        SmokeTest/MatrixTests/MatrixTests.hpp
+)
 
-add_executable(LinearAlgebra ${SOURCES} HelpfulFunctions.hpp)
+add_executable(LinearAlgebra ${SOURCES})
 
 target_include_directories(LinearAlgebra PRIVATE ${PROJECT_SOURCE_DIR}/include)
 #target_include_directories(LinearAlgebra PUBLIC ${PROJECT_SOURCE_DIR}/source)

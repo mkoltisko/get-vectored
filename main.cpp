@@ -1,17 +1,12 @@
 
-#include <iostream>
-#include <string>
-
-#include "include/Vector.hpp"
-#include "include/Operations.hpp"
-
-#include "SmokeTest/VectorTests/VectorTests.hpp"
 #include "SmokeTest/TestExecute.hpp"
+#include "SmokeTest/VectorTests/VectorTests.hpp"
+#include "SmokeTest/MatrixTests/MatrixTests.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
 
-    TestExecute::Instance()->RunSuite();
+    TestExecute<VectorTests>::Instance()->RunSuite();
+    TestExecute<MatrixTests>::Instance()->RunSuite();
 
     return 0;
 }

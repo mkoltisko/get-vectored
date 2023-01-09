@@ -22,7 +22,7 @@ public:
 
     bool m_orientation;
 
-    std::string to_string();
+    std::string to_string() const;
 
     int& operator[](uint32_t index);
     Vector& operator+(Vector pGiven);
@@ -36,7 +36,7 @@ public:
     void transpose();
     float magnitude();
 
-    inline int size() { return m_length; }
+    inline int size() const { return m_length; }
 
 private:
 
