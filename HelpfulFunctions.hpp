@@ -5,10 +5,30 @@
 #include <iostream>
 #include <cassert>
 
-#include <LinearObject.hpp>
+//#include <LinearObject.hpp>
+class LinearObject;
 
+struct SUBSCRIPT
+{
+    SUBSCRIPT(unsigned int x=0, unsigned int y=0) :
+        row(x),
+        col(y)
+    {}
+
+    bool operator==(SUBSCRIPT other) const
+    {
+        return this->row == other.row && this->col == other.col;
+    }
+
+    unsigned int row;
+    unsigned int col;
+};
+
+SUBSCRIPT ind2sub(unsigned int linearIndex, unsigned int nRows, unsigned int nCols);
+unsigned int sub2ind(SUBSCRIPT coord, unsigned int nRows, unsigned int nCols);
 
 void print(const std::string& message);
+void print(const SUBSCRIPT& coords);
 void print(const LinearObject* matrix);
 void assertMessage(bool condition, const std::string& message = "");
 

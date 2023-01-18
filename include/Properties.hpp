@@ -4,10 +4,14 @@
 
 #include "Operations.hpp"
 
+class LinearObject;
+
+bool isVector(LinearObject* pVector);
 bool isColumnVector(LinearObject* pVector);
 bool isRowVector(LinearObject* pVector);
 bool isZeroVector(LinearObject* pVector);
 bool isSquareMatrix(LinearObject* pMatrix);
+bool isSymmetrical(LinearObject* pMatrix);
 bool isInvertible(LinearObject* pMatrix);
 
 

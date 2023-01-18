@@ -7,7 +7,7 @@ double dot(LinearObject* vecLeft, LinearObject* vecRight)
 
     double sum = 0;
     for (int i = 0; i < vecLeft->size(); ++i) {
-        sum = sum + (vecLeft->get(i) * vecRight->get(i));
+        sum = sum + (vecLeft->at(i) * vecRight->at(i));
     }
     return sum;
 }

@@ -3,38 +3,46 @@
 #define MATRIX_H_LINEAROBJECT_HPP
 
 #include <string>
+#include <sstream>
 
+#include "Properties.hpp"
+#include "../HelpfulFunctions.hpp"
 
 class LinearObject
 {
 public:
 
-    LinearObject(unsigned int rows = 3, unsigned int cols = 3);
-    LinearObject(LinearObject* first, LinearObject& second); // create augmented matrix
+    explicit LinearObject(unsigned int rows = 3, unsigned int cols = 3);
+    LinearObject(LinearObject* first, LinearObject* second); // create augmented matrix
 
     ~LinearObject();
 
-    int& operator[](unsigned int linearIndex);
+    float& operator[](unsigned int linearIndex);
+    float& operator[](SUBSCRIPT coords);
 
-    int& operator()(unsigned int x, unsigned int y);
+    float& operator()(unsigned int x, unsigned int y);
 
-    LinearObject operator+(unsigned int scalar);
+    LinearObject operator+(float scalar);
     LinearObject operator+(LinearObject& other);
 
-    LinearObject operator-(unsigned int scalar);
+    LinearObject operator-(float scalar);
     LinearObject operator-(LinearObject& other);
 
-    LinearObject operator*(unsigned int scalar);
+    LinearObject operator*(float scalar);
     LinearObject operator*(LinearObject& other);
 
-    LinearObject operator/(unsigned int scalar);
+    LinearObject operator/(float scalar);
     LinearObject operator/(LinearObject& other);
 
-    int get(unsigned int index);
-    int getNumRows() const { return m_NumRows; }
-    int getNumColumns() const { return m_NumColumns; }
-    int size() const { return m_NumElements; }
-    bool empty() const { return m_NumElements == 0; }
+    float at(unsigned int index);
+    inline int getNumRows() const { return m_NumRows; }
+    inline int getNumColumns() const { return m_NumColumns; }
+    inline int size() const { return m_NumElements; }
+    inline bool empty() const { return m_NumElements == 0; }
+
+    inline SUBSCRIPT dimensions() const {
+        return SUBSCRIPT(m_NumRows, m_NumColumns);
+    }
 
     std::string to_string() const;
 
@@ -43,12 +51,12 @@ public:
     float determinant();
     LinearObject inverse();
 
-protected:
+private:
 
-    int* m_pData;
-    int m_NumColumns;
-    int m_NumRows;
-    int m_NumElements;
+    float* m_pData;
+    unsigned int m_NumRows;
+    unsigned int m_NumColumns;
+    unsigned int m_NumElements;
 
 };
 
