@@ -8,16 +8,30 @@
 #include "Properties.hpp"
 #include "../HelpfulFunctions.hpp"
 
+enum NORM_ORDER
+{
+    FROB = 3,
+    INF = 4,
+    MAX = 5
+};
+
+
 class LinearObject
 {
 public:
 
     explicit LinearObject(unsigned int rows = 3, unsigned int cols = 3);
-    LinearObject(LinearObject* first, LinearObject* second); // create augmented matrix
+    LinearObject(const LinearObject& obj);
+    LinearObject(LinearObject& first, LinearObject& second); // create augmented matrix
 
     ~LinearObject();
 
+    LinearObject& operator=(const LinearObject& obj);
+
+    float operator[](unsigned int linearIndex) const;
     float& operator[](unsigned int linearIndex);
+
+    float operator[](SUBSCRIPT coords) const;
     float& operator[](SUBSCRIPT coords);
 
     float& operator()(unsigned int x, unsigned int y);
@@ -35,19 +49,25 @@ public:
     LinearObject operator/(LinearObject& other);
 
     float at(unsigned int index);
+    float at(SUBSCRIPT coord);
     inline int getNumRows() const { return m_NumRows; }
     inline int getNumColumns() const { return m_NumColumns; }
     inline int size() const { return m_NumElements; }
-    inline bool empty() const { return m_NumElements == 0; }
+
+    LinearObject getRow(unsigned int i);
+    LinearObject getColumn(unsigned int i);
 
     inline SUBSCRIPT dimensions() const {
         return SUBSCRIPT(m_NumRows, m_NumColumns);
     }
 
+    void fill();
+    void clear();
     std::string to_string() const;
 
     void transpose();
     float magnitude();
+    float norm(NORM_ORDER order);
     float determinant();
     LinearObject inverse();
 

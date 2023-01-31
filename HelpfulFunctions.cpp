@@ -3,21 +3,21 @@
 
 #include "LinearObject.hpp"
 
-SUBSCRIPT ind2sub(unsigned int linearIndex, unsigned int nRows, unsigned int nCols)
+// linear zero-index to zero-indexed coordinates
+SUBSCRIPT ind2sub(unsigned int linearIndex, const LinearObject& obj)
 {
-    if(linearIndex < nRows)
-    {
-        ++nRows;
-    }
-    return SUBSCRIPT(linearIndex / nRows, linearIndex % nCols);
+    assertMessage(linearIndex < obj.size(), "Index out of bounds");
+    return SUBSCRIPT(linearIndex / obj.getNumColumns(), linearIndex % obj.getNumColumns());
 }
 
-unsigned int sub2ind(SUBSCRIPT coord, unsigned int nRows, unsigned int nCols)
+unsigned int sub2ind(SUBSCRIPT coord, const LinearObject &obj)
 {
-    return (coord.row * nCols) + coord.col;
+    assertMessage(coord.row < obj.getNumRows(), "Row index out of bounds");
+    assertMessage(coord.col < obj.getNumColumns(), "Column index out of bounds");
+    return (coord.row * obj.getNumColumns()) + coord.col;
 }
 
-void print(const std::string &message)
+void print(const std::string& message)
 {
     std::cout << message << std::endl;
 }
@@ -27,20 +27,14 @@ void print(const SUBSCRIPT& coords)
     std::cout << '(' << coords.row << ',' << coords.col << ')' << std::endl;
 }
 
-void print(const LinearObject* matrix)
+void print(const LinearObject& obj)
 {
-    assert(matrix != nullptr);
-    print(matrix->to_string());
+    print(obj.to_string());
 }
 
 void assertMessage(bool condition, const std::string& message)
 {
-    if (condition)
-    {
-        // true so nothing else required
-        return;
-    }
-    if(!message.empty())
+    if(!condition && !message.empty())
     {
         print(message);
     }

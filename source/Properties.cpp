@@ -63,5 +63,5 @@ bool isInvertible(LinearObject *pMatrix)
         return false;
     }
     //
-    return false;
+    return true;
 }

@@ -26,5 +26,5 @@ double angle(LinearObject* vecLeft, LinearObject* vecRight)
 {
     assert(!isZeroVector(vecLeft));
     assert(!isZeroVector(vecRight));
-    return acos(dot(vecLeft, vecRight) / (vecLeft->magnitude() * vecRight->magnitude())) * (180/PI);
+    return acos(dot(vecLeft, vecRight) / (vecLeft->magnitude() * vecRight->magnitude())) * (180 / PI);
 }

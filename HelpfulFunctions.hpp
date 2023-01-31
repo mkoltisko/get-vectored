@@ -24,12 +24,12 @@ struct SUBSCRIPT
     unsigned int col;
 };
 
-SUBSCRIPT ind2sub(unsigned int linearIndex, unsigned int nRows, unsigned int nCols);
-unsigned int sub2ind(SUBSCRIPT coord, unsigned int nRows, unsigned int nCols);
+SUBSCRIPT ind2sub(unsigned int linearIndex, const LinearObject& obj);
+unsigned int sub2ind(SUBSCRIPT coord, const LinearObject& obj);
 
 void print(const std::string& message);
 void print(const SUBSCRIPT& coords);
-void print(const LinearObject* matrix);
+void print(const LinearObject& matrix);
 void assertMessage(bool condition, const std::string& message = "");
 
 
