@@ -22,7 +22,7 @@ public:
 
     explicit LinearObject(unsigned int rows = 3, unsigned int cols = 3);
     LinearObject(const LinearObject& obj);
-    LinearObject(LinearObject& first, LinearObject& second); // create augmented matrix
+    LinearObject(LinearObject& left, LinearObject& right); // create augmented matrix
 
     ~LinearObject();
 
@@ -50,16 +50,14 @@ public:
 
     float at(unsigned int index);
     float at(SUBSCRIPT coord);
-    inline int getNumRows() const { return m_NumRows; }
-    inline int getNumColumns() const { return m_NumColumns; }
-    inline int size() const { return m_NumElements; }
+    inline unsigned int getNumRows() const { return m_NumRows; }
+    inline unsigned int getNumColumns() const { return m_NumColumns; }
+    inline unsigned int size() const { return m_NumElements; }
+    inline SUBSCRIPT dimensions() const { return SUBSCRIPT(m_NumRows, m_NumColumns); }
 
     LinearObject getRow(unsigned int i);
     LinearObject getColumn(unsigned int i);
 
-    inline SUBSCRIPT dimensions() const {
-        return SUBSCRIPT(m_NumRows, m_NumColumns);
-    }
 
     void fill();
     void clear();

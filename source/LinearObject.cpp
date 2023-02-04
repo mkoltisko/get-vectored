@@ -23,20 +23,33 @@ LinearObject::LinearObject(const LinearObject& obj) :
 }
 
 // Mainly used to create an augmented 4x4 matrix from (R, t)
-LinearObject::LinearObject(LinearObject& R, LinearObject& t)
+LinearObject::LinearObject(LinearObject& left, LinearObject& right)
 {
-    assertMessage(R.m_NumRows == t.m_NumRows, "Must have same number of rows");
-    m_NumRows = R.m_NumColumns + t.m_NumColumns;
-    m_NumColumns = R.m_NumColumns + t.m_NumColumns;
-    m_NumElements = m_NumColumns * m_NumColumns; // augmented matrix should be square
-    m_pData  = new float[m_NumElements]{};
-    // fill in values and make the rest identity matrix
+    assertMessage(left.m_NumRows == right.m_NumRows, "Must have same number of rows");
 
-    for(int i = 0; i < m_NumElements; ++i)
+    unsigned int length = left.m_NumColumns + right.m_NumColumns;
+    m_NumRows = length;
+    m_NumColumns = length;
+    m_NumElements = length * length;
+    m_pData = new float[m_NumElements]{};
+
+    for(int i = 0; i < length; ++i)
     {
-
+        m_pData[sub2ind(SUBSCRIPT(i, i), *this)] = 1;
     }
 
+    for(int i = 0; i < left.m_NumElements; ++i)
+    {
+        SUBSCRIPT R_coord = ind2sub(i, left);
+        m_pData[sub2ind(R_coord, *this)] = left[i];
+    }
+
+    for(int i = 0; i < right.m_NumElements; ++i)
+    {
+        SUBSCRIPT t_coord = ind2sub(i, right);
+        t_coord.col += left.m_NumColumns;
+        m_pData[sub2ind(t_coord, *this)] = right[i];
+    }
 }
 
 LinearObject::~LinearObject()
@@ -66,22 +79,28 @@ LinearObject& LinearObject::operator=(const LinearObject& obj)
 
 float LinearObject::operator[](unsigned int linearIndex) const
 {
+    assertMessage(linearIndex < m_NumElements, "Index out of bounds");
     return m_pData[linearIndex];
 }
 
 float& LinearObject::operator[](unsigned int linearIndex)
 {
+    assertMessage(linearIndex < m_NumElements, "Index out of bounds");
     return m_pData[linearIndex];
 }
 
-float LinearObject::operator[](SUBSCRIPT coords) const
+float LinearObject::operator[](SUBSCRIPT coord) const
 {
-    return m_pData[sub2ind(coords, *this)];
+    assertMessage(coord.row < m_NumRows, "Row index out of bounds");
+    assertMessage(coord.col < m_NumColumns, "Column index out of bounds");
+    return m_pData[sub2ind(coord, *this)];
 }
 
-float& LinearObject::operator[](SUBSCRIPT coords)
+float& LinearObject::operator[](SUBSCRIPT coord)
 {
-    return m_pData[sub2ind(coords, *this)];
+    assertMessage(coord.row < m_NumRows, "Row index out of bounds");
+    assertMessage(coord.col < m_NumColumns, "Column index out of bounds");
+    return m_pData[sub2ind(coord, *this)];
 }
 
 float& LinearObject::operator()(unsigned int x, unsigned int y)
@@ -96,18 +115,18 @@ LinearObject LinearObject::operator+(float scalar)
     LinearObject result(m_NumRows, m_NumColumns);
     for(int i = 0; i < m_NumElements; ++i)
     {
-        result[i] = m_pData[i] + scalar;
+        result.m_pData[i] = m_pData[i] + scalar;
     }
     return result;
 }
 
-LinearObject LinearObject::operator+(LinearObject &other)
+LinearObject LinearObject::operator+(LinearObject& other)
 {
-    assertMessage(dimensions() == other.dimensions(), "Objects must have same dimensions");
+    assertMessage(dimensions() == other.dimensions(), "Matrices must have same dimensions");
     LinearObject result(m_NumRows, m_NumColumns);
     for(int i = 0; i < m_NumElements; ++i)
     {
-        result[i] = m_pData[i] + other[i];
+        result.m_pData[i] = m_pData[i] + other[i];
     }
     return result;
 }
@@ -117,18 +136,18 @@ LinearObject LinearObject::operator-(float scalar)
     LinearObject result(m_NumRows, m_NumColumns);
     for(int i = 0; i < m_NumElements; ++i)
     {
-        result[i] = m_pData[i] - scalar;
+        result.m_pData[i] = m_pData[i] - scalar;
     }
     return result;
 }
 
 LinearObject LinearObject::operator-(LinearObject &other)
 {
-    assertMessage(dimensions() == other.dimensions(), "Objects must have same dimensions");
+    assertMessage(dimensions() == other.dimensions(), "Matrices must have same dimensions");
     LinearObject result(m_NumRows, m_NumColumns);
     for(int i = 0; i < m_NumElements; ++i)
     {
-        result[i] = m_pData[i] - other[i];
+        result.m_pData[i] = m_pData[i] - other[i];
     }
     return result;
 }
@@ -138,28 +157,27 @@ LinearObject LinearObject::operator*(float scalar)
     LinearObject result(m_NumRows, m_NumColumns);
     for(int i = 0; i < m_NumElements; ++i)
     {
-        result[i] = m_pData[i] * scalar;
+        result.m_pData[i] = m_pData[i] * scalar;
     }
     return result;
 }
 
 LinearObject LinearObject::operator*(LinearObject &other)
 {
-    assertMessage(this->dimensions().col == other.dimensions().row, "Objects must have complementary dimensions");
+    assertMessage(m_NumColumns == other.m_NumRows, "Objects must have complementary dimensions");
     unsigned int commonDim = m_NumColumns;
-    LinearObject result(m_NumRows, other.m_NumColumns);
-    for(int i = 0; i < result.size(); ++i)
+    LinearObject product(m_NumRows, other.m_NumColumns);
+    for(int i = 0; i < product.size(); ++i)
     {
-        SUBSCRIPT coord = ind2sub(i, result);
+        SUBSCRIPT coord = ind2sub(i, product);
         float sum = 0;
         for(int j = 0; j < commonDim; ++j)
         {
-            sum += m_pData[j + coord.row * (this->m_NumRows-1)] * other[coord.col + j * (other.m_NumColumns-1)];
+            sum += (*this)[SUBSCRIPT(coord.row, j)] * other[SUBSCRIPT(j, coord.col)];
         }
-        result[i] = sum;
-//        print(&result);
+        product[i] = sum;
     }
-    return result;
+    return product;
 }
 
 LinearObject LinearObject::operator/(float scalar)
@@ -167,19 +185,19 @@ LinearObject LinearObject::operator/(float scalar)
     LinearObject result(m_NumRows, m_NumColumns);
     for(int i = 0; i < m_NumElements; ++i)
     {
-        result[i] = m_pData[i] / scalar;
+        result.m_pData[i] = m_pData[i] / scalar;
     }
     return result;
 }
 
 LinearObject LinearObject::operator/(LinearObject &other)
 {
-    assertMessage(this->dimensions().row == other.dimensions().col, "Objects must have complementary dimensions");
-    assertMessage(this->dimensions().col == other.dimensions().row, "Objects must have complementary dimensions");
+    assertMessage(isSquareMatrix(this) && isSquareMatrix(&other), "Matrix division is undefined for non-square matrices ");
+    assertMessage(dimensions() == other.dimensions(), "Matrix division must be between matrices of the same dimensions");
 
     LinearObject result{};
     // multiply by inverse
-    return result;
+    return (*this) * other.inverse();
 }
 
 float LinearObject::at(unsigned int index)
@@ -252,7 +270,7 @@ void LinearObject::transpose()
 
 float LinearObject::magnitude()
 {
-    assertMessage(isVector(this), "Matrix Magnitude is not defined, use norm");
+    assertMessage(isVector(this), "Matrix magnitude is not defined, use norm");
     float result = 0;
     for(int i = 0; i < m_NumElements; ++i)
     {

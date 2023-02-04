@@ -10,7 +10,7 @@ class LinearObject;
 
 struct SUBSCRIPT
 {
-    SUBSCRIPT(unsigned int x=0, unsigned int y=0) :
+    explicit SUBSCRIPT(unsigned int x=0, unsigned int y=0) :
         row(x),
         col(y)
     {}
@@ -32,6 +32,9 @@ void print(const SUBSCRIPT& coords);
 void print(const LinearObject& matrix);
 void assertMessage(bool condition, const std::string& message = "");
 
-
+LinearObject Identity(unsigned int length);
+LinearObject Rx(float theta);
+LinearObject Ry(float theta);
+LinearObject Rz(float theta);
 
 #endif //MATRIX_H_HELPFULFUNCTIONS_HPP

@@ -40,3 +40,45 @@ void assertMessage(bool condition, const std::string& message)
     }
     assert(condition);
 }
+
+LinearObject Identity(unsigned int length)
+{
+    LinearObject I(length, length);
+    for(int i = 0; i < length; ++i)
+    {
+        I[SUBSCRIPT(i, i)] = 1;
+    }
+    return I;
+}
+
+LinearObject Rx(float theta)
+{
+    LinearObject rx;
+    rx[0] = 1;
+    rx[SUBSCRIPT(1, 1)] = cos(theta);
+    rx[SUBSCRIPT(1, 2)] = -sin(theta);
+    rx[SUBSCRIPT(2, 1)] = sin(theta);
+    rx[SUBSCRIPT(2, 2)] = cos(theta);
+    return rx;
+}
+
+LinearObject Ry(float theta)
+{
+    LinearObject ry;
+    ry[SUBSCRIPT(0, 0)] = cos(theta);
+    ry[SUBSCRIPT(0, 2)] = sin(theta);
+    ry[SUBSCRIPT(1, 1)] = 1;
+    ry[SUBSCRIPT(2, 0)] = -sin(theta);
+    ry[SUBSCRIPT(2, 2)] = cos(theta);
+    return ry;
+}
+
+LinearObject Rz(float theta)
+{
+    LinearObject rz;
+    rz[SUBSCRIPT(0, 0)] = cos(theta);
+    rz[SUBSCRIPT(0, 1)] = -sin(theta);
+    rz[SUBSCRIPT(1, 0)] = sin(theta);
+    rz[SUBSCRIPT(1, 1)] = cos(theta);
+    rz[SUBSCRIPT(2, 2)] = 1;
+    return rz;}
