@@ -4,7 +4,7 @@
 
 
 #include <vector>
-#include <Matrix.hpp>
+#include "../../LinearAlgebra/LinearObject.hpp"
 #include "../TestFixture.hpp"
 
 
@@ -43,8 +43,8 @@ private:
 
     MatrixTests() = default;
 
-    Matrix* m_pMatOne{};
-    Matrix* m_pMatTwo{};
+    LinearObject* m_pMatOne{};
+    LinearObject* m_pMatTwo{};
 
 };
 

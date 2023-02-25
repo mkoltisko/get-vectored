@@ -2,7 +2,8 @@
 #ifndef VECTORTESTS_HPP
 #define VECTORTESTS_HPP
 
-#include "Vector.hpp"
+#include <vector>
+#include "../../LinearAlgebra/LinearObject.hpp"
 #include "../TestFixture.hpp"
 
 
@@ -40,8 +41,8 @@ private:
 
     VectorTests() = default;
 
-    Vector* m_pVecOne{};
-    Vector* m_pVecTwo{};
+    LinearObject* m_pVecOne{};
+    LinearObject* m_pVecTwo{};
 };
 
 

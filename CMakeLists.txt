@@ -9,22 +9,18 @@ set( SOURCES
         main.cpp
         HelpfulFunctions.cpp
         HelpfulFunctions.hpp
-        source/Vector.cpp
-        include/Vector.hpp
-        source/Properties.cpp
-        include/Properties.hpp
-        source/Operations.cpp
-        include/Operations.hpp
-        source/Matrix.cpp
-        include/Matrix.hpp
+        LinearAlgebra/Properties.cpp
+        LinearAlgebra/Properties.hpp
+        LinearAlgebra/Operations.cpp
+        LinearAlgebra/Operations.hpp
         SmokeTest/TestFixture.hpp
         SmokeTest/TestExecute.hpp
         SmokeTest/VectorTests/VectorTests.cpp
         SmokeTest/VectorTests/VectorTests.hpp
         SmokeTest/MatrixTests/MatrixTests.cpp
         SmokeTest/MatrixTests/MatrixTests.hpp
-        source/LinearObject.cpp
-        include/LinearObject.hpp
+        LinearAlgebra/LinearObject.cpp
+        LinearAlgebra/LinearObject.hpp
         )
 
 add_executable(LinearAlgebra ${SOURCES})

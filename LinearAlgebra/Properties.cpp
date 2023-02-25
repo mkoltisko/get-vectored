@@ -1,5 +1,5 @@
 
-#include "../include/Properties.hpp"
+#include "Properties.hpp"
 
 
 bool isVector(LinearObject *pVector)

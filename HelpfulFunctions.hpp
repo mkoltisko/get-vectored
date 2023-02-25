@@ -5,7 +5,6 @@
 #include <iostream>
 #include <cassert>
 
-//#include <LinearObject.hpp>
 class LinearObject;
 
 struct SUBSCRIPT

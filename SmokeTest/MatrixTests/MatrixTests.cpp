@@ -19,8 +19,8 @@ void MatrixTests::registerTests()
 
 void MatrixTests::setup()
 {
-    m_pMatOne = new Matrix();
-    m_pMatTwo = new Matrix();
+    m_pMatOne = new LinearObject();
+    m_pMatTwo = new LinearObject();
 }
 
 void MatrixTests::teardown()

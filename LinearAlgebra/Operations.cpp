@@ -1,5 +1,5 @@
 
-#include "../include/Operations.hpp"
+#include "Operations.hpp"
 
 double dot(LinearObject* vecLeft, LinearObject* vecRight)
 {

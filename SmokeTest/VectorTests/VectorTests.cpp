@@ -20,8 +20,8 @@ void VectorTests::registerTests()
 
 void VectorTests::setup()
 {
-    m_pVecOne = new Vector();
-    m_pVecTwo = new Vector();
+    m_pVecOne = new LinearObject();
+    m_pVecTwo = new LinearObject();
 }
 
 void VectorTests::teardown()

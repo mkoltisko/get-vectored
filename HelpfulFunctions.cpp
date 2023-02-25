@@ -1,7 +1,7 @@
 
 #include "HelpfulFunctions.hpp"
 
-#include "LinearObject.hpp"
+#include "LinearAlgebra/LinearObject.hpp"
 
 // linear zero-index to zero-indexed coordinates
 SUBSCRIPT ind2sub(unsigned int linearIndex, const LinearObject& obj)
