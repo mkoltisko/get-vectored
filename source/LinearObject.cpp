@@ -33,21 +33,24 @@ LinearObject::LinearObject(LinearObject& left, LinearObject& right)
     m_NumElements = length * length;
     m_pData = new float[m_NumElements]{};
 
+    // Start with an identity matrix
     for(int i = 0; i < length; ++i)
     {
         m_pData[sub2ind(SUBSCRIPT(i, i), *this)] = 1;
     }
 
+    // Replace top left corner with left matrix
     for(int i = 0; i < left.m_NumElements; ++i)
     {
         SUBSCRIPT R_coord = ind2sub(i, left);
         m_pData[sub2ind(R_coord, *this)] = left[i];
     }
 
+    // Place right matrix on the top after the left matrix
     for(int i = 0; i < right.m_NumElements; ++i)
     {
         SUBSCRIPT t_coord = ind2sub(i, right);
-        t_coord.col += left.m_NumColumns;
+        t_coord.col += left.m_NumColumns;   // offset by the first matrix's columns
         m_pData[sub2ind(t_coord, *this)] = right[i];
     }
 }
@@ -197,7 +200,7 @@ LinearObject LinearObject::operator/(LinearObject &other)
 
     LinearObject result{};
     // multiply by inverse
-    return (*this) * other.inverse();
+    return result;
 }
 
 float LinearObject::at(unsigned int index)
@@ -281,6 +284,12 @@ float LinearObject::magnitude()
 
 float LinearObject::determinant()
 {
+    assertMessage(m_NumRows == m_NumColumns, "Only square matrices have determinants");
+    if(m_NumRows == 2 && m_NumColumns == 2)
+    {
+        // base case 2x2 matrix det of [a, b;c, d] is ad-bc
+        return (m_pData[0] * m_pData[3]) - (m_pData[1] * m_pData[2]);
+    }
     return 0;
 }
 
