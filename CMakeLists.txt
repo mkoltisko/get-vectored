@@ -21,7 +21,7 @@ set( SOURCES
         SmokeTest/MatrixTests/MatrixTests.hpp
         LinearAlgebra/LinearObject.cpp
         LinearAlgebra/LinearObject.hpp
-        )
+        Robotics/Joint.cpp Robotics/Joint.hpp Robotics/Robot.cpp Robotics/Robot.hpp)
 
 add_executable(LinearAlgebra ${SOURCES})
 

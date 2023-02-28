@@ -10,18 +10,6 @@ LinearObject::LinearObject(unsigned int rows, unsigned int cols) :
     m_pData = new float[rows * cols]{};
 }
 
-LinearObject::LinearObject(const LinearObject& obj) :
-    m_NumRows(obj.m_NumRows),
-    m_NumColumns(obj.m_NumColumns),
-    m_NumElements(obj.m_NumElements)
-{
-    m_pData = new float[obj.m_NumElements];
-    for(int i = 0; i < obj.m_NumElements; ++i)
-    {
-        m_pData[i] = obj.m_pData[i];
-    }
-}
-
 // Mainly used to create an augmented 4x4 matrix from (R, t)
 LinearObject::LinearObject(LinearObject& left, LinearObject& right)
 {
@@ -52,6 +40,18 @@ LinearObject::LinearObject(LinearObject& left, LinearObject& right)
         SUBSCRIPT t_coord = ind2sub(i, right);
         t_coord.col += left.m_NumColumns;   // offset by the first matrix's columns
         m_pData[sub2ind(t_coord, *this)] = right[i];
+    }
+}
+
+LinearObject::LinearObject(const LinearObject& obj) :
+        m_NumRows(obj.m_NumRows),
+        m_NumColumns(obj.m_NumColumns),
+        m_NumElements(obj.m_NumElements)
+{
+    m_pData = new float[obj.m_NumElements];
+    for(int i = 0; i < obj.m_NumElements; ++i)
+    {
+        m_pData[i] = obj.m_pData[i];
     }
 }
 
