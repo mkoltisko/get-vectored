@@ -21,10 +21,14 @@ set( SOURCES
         SmokeTest/MatrixTests/MatrixTests.hpp
         LinearAlgebra/LinearObject.cpp
         LinearAlgebra/LinearObject.hpp
-        Robotics/Joint.cpp Robotics/Joint.hpp Robotics/Robot.cpp Robotics/Robot.hpp)
+        Robotics/Joint.cpp
+        Robotics/Joint.hpp
+        Robotics/Robot.cpp
+        Robotics/Robot.hpp
+        DataStructures/LinkedList.cpp
+        DataStructures/LinkedList.h)
 
 add_executable(LinearAlgebra ${SOURCES})
 
 target_include_directories(LinearAlgebra PRIVATE ${PROJECT_SOURCE_DIR}/include)
-#target_include_directories(LinearAlgebra PUBLIC ${PROJECT_SOURCE_DIR}/source)
 
