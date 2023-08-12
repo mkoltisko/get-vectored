@@ -2,6 +2,7 @@
 #include "HelpfulFunctions.hpp"
 
 #include "LinearAlgebra/LinearObject.hpp"
+#include "DataStructures/LinkedList.hpp"
 
 // linear zero-index to zero-indexed coordinates
 SUBSCRIPT ind2sub(unsigned int linearIndex, const LinearObject& obj)
@@ -31,6 +32,13 @@ void print(const LinearObject& obj)
 {
     print(obj.to_string());
 }
+
+template <typename T>
+void print(const LinkedList<T>& list)
+{
+    print(list.to_string());
+}
+
 
 void assertMessage(bool condition, const std::string& message)
 {

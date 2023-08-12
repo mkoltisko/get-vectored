@@ -2,27 +2,19 @@
 #ifndef VECTORTESTS_HPP
 #define VECTORTESTS_HPP
 
-#include <vector>
 #include "../../LinearAlgebra/LinearObject.hpp"
 #include "../TestFixture.hpp"
-
 
 class VectorTests : public TestFixture
 {
 public:
-
-    // specific type for member functions taking nothing and returning nothing
-    typedef void (VectorTests::*UnitTest)();
-    static std::vector<VectorTests::UnitTest>* m_TestList;
-
-    static VectorTests* Instance()
-    {
-        static VectorTests objVectorTests;
-        return &objVectorTests;
-    }
-
-    void registerTests() override;
-
+    UT_REGISTER_SUITE(VectorTests)
+    UT_REGISTER_TEST(VectorTests::OperatorsTest)
+    UT_REGISTER_TEST(VectorTests::ProductsTest)
+    UT_REGISTER_TEST(VectorTests::TransposeTest)
+    UT_REGISTER_TEST(VectorTests::MagnitudeTest)
+    UT_REGISTER_END
+    
     void setup() override;
 
     void teardown() override;
@@ -46,4 +38,4 @@ private:
 };
 
 
-#endif //MATRIX_H_VECTORTESTS_HPP
+#endif //VECTORTESTS_HPP

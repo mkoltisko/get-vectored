@@ -2,27 +2,20 @@
 #ifndef MAXTRIXTESTS_HPP
 #define MAXTRIXTESTS_HPP
 
-
-#include <vector>
 #include "../../LinearAlgebra/LinearObject.hpp"
 #include "../TestFixture.hpp"
-
 
 class MatrixTests : public TestFixture
 {
 public:
+    UT_REGISTER_SUITE(MatrixTests)
+    UT_REGISTER_TEST(MatrixTests::OperatorsTest)
+    UT_REGISTER_TEST(MatrixTests::ProductsTest)
+    UT_REGISTER_TEST(MatrixTests::TransposeTest)
+    UT_REGISTER_TEST(MatrixTests::PropertiesTest)
+    UT_REGISTER_END
 
-    // specific type for member functions taking nothing and returning nothing
-    typedef void (MatrixTests::*UnitTest)();
-    static std::vector<MatrixTests::UnitTest>* m_TestList;
-
-    static MatrixTests* Instance()
-    {
-        static MatrixTests objVectorTests;
-        return &objVectorTests;
-    }
-
-    void registerTests() override;
+    // void registerTests() override;
 
     void setup() override;
 
@@ -49,4 +42,4 @@ private:
 };
 
 
-#endif //MATRIX_H_MAXTRIXTESTS_HPP
+#endif //MAXTRIXTESTS_HPP

@@ -7,6 +7,9 @@
 
 class LinearObject;
 
+template <typename T> 
+class LinkedList;
+
 struct SUBSCRIPT
 {
     explicit SUBSCRIPT(unsigned int x=0, unsigned int y=0) :
@@ -29,6 +32,10 @@ unsigned int sub2ind(SUBSCRIPT coord, const LinearObject& obj);
 void print(const std::string& message);
 void print(const SUBSCRIPT& coords);
 void print(const LinearObject& matrix);
+
+template <typename T>
+void print(const LinkedList<T>& list);
+
 void assertMessage(bool condition, const std::string& message = "");
 
 LinearObject Identity(unsigned int length);

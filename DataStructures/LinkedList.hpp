@@ -1,13 +1,16 @@
 
-#ifndef MATRIX_H_LINKEDLIST_H
-#define MATRIX_H_LINKEDLIST_H
+#ifndef MATRIX_H_LINKEDLIST_HPP
+#define MATRIX_H_LINKEDLIST_HPP
 
-template <typename T>
+#include <string>
+#include <sstream>
+
+template <typename T> 
 class LinkedList
 {
 public:
 
-    LinkedList<T>(T& start = nullptr);
+    LinkedList<T>(T* start = nullptr);
 
     LinkedList<T>(const LinkedList<T>& other);
 
@@ -15,7 +18,7 @@ public:
 
     LinkedList& operator= (const LinkedList<T>& other);
 
-    T& get(unsigned int index);
+    T get(unsigned int index);
 
     void push(T& newHead);
 
@@ -29,18 +32,23 @@ public:
 
     void remove(unsigned int index);
 
+    std::string to_string();
+
 private:
 
     struct Node
     {
-        T* m_pElement;
+        T m_Element;
         Node* m_pNext;
+
+        Node(T element, Node* next = nullptr) :
+            m_Element(element),
+            m_pNext(next)
+            {}
     };
 
     Node* m_pHead;
-    Node* m_pTail;
     unsigned int m_Size;
 };
 
-
-#endif //MATRIX_H_LINKEDLIST_H
+#endif //LINKEDLIST_HPP

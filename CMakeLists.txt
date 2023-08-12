@@ -13,12 +13,6 @@ set( SOURCES
         LinearAlgebra/Properties.hpp
         LinearAlgebra/Operations.cpp
         LinearAlgebra/Operations.hpp
-        SmokeTest/TestFixture.hpp
-        SmokeTest/TestExecute.hpp
-        SmokeTest/VectorTests/VectorTests.cpp
-        SmokeTest/VectorTests/VectorTests.hpp
-        SmokeTest/MatrixTests/MatrixTests.cpp
-        SmokeTest/MatrixTests/MatrixTests.hpp
         LinearAlgebra/LinearObject.cpp
         LinearAlgebra/LinearObject.hpp
         Robotics/Joint.cpp
@@ -26,7 +20,15 @@ set( SOURCES
         Robotics/Robot.cpp
         Robotics/Robot.hpp
         DataStructures/LinkedList.cpp
-        DataStructures/LinkedList.h)
+        DataStructures/LinkedList.hpp
+        SmokeTest/TestFixture.hpp
+        SmokeTest/TestExecute.hpp
+        SmokeTest/VectorTests/VectorTests.cpp
+        SmokeTest/VectorTests/VectorTests.hpp
+        SmokeTest/MatrixTests/MatrixTests.cpp
+        SmokeTest/MatrixTests/MatrixTests.hpp
+        SmokeTest/LinkedListTests/LinkedListTests.cpp
+        SmokeTest/LinkedListTests/LinkedListTests.hpp)
 
 add_executable(LinearAlgebra ${SOURCES})
 

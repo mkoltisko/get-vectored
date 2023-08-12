@@ -2,25 +2,29 @@
 #include "SmokeTest/TestExecute.hpp"
 #include "SmokeTest/VectorTests/VectorTests.hpp"
 #include "SmokeTest/MatrixTests/MatrixTests.hpp"
+#include "SmokeTest/LinkedListTests/LinkedListTests.hpp"
 #include "HelpfulFunctions.hpp"
+
+std::vector<TestFixture::UnitTest>* TestFixture::m_TestList = nullptr;
 
 int main() {
 
     TestExecute<VectorTests>::Instance()->RunSuite();
     TestExecute<MatrixTests>::Instance()->RunSuite();
+    TestExecute<LinkedListTests>::Instance()->RunSuite();
 
-    LinearObject matR(3, 3);
-    matR[SUBSCRIPT(2, 1)] = 2;
-    matR[4] = 1;
-    print(matR);
+    // LinearObject matR(3, 3);
+    // matR[SUBSCRIPT(2, 1)] = 2;
+    // matR[4] = 1;
+    // print(matR);
 
-    LinearObject matL(3, 1);
-    matL[0] = 3;
-    matL[1] = 7;
-    print(matL);
+    // LinearObject matL(3, 1);
+    // matL[0] = 3;
+    // matL[1] = 7;
+    // print(matL);
 
-    LinearObject A(matR, matL);
-    print(A);
+    // LinearObject A(matR, matL);
+    // print(A);
 
 //    LinearObject prod = matR * matL;
 //    print(prod);

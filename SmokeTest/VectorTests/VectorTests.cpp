@@ -1,22 +1,13 @@
 
 #include "VectorTests.hpp"
 
-std::vector<VectorTests::UnitTest>* VectorTests::m_TestList = nullptr;
-
-void VectorTests::registerTests()
-{
-    if(m_TestList != nullptr)
-    {
-        return;
-    }
-
-    m_TestList = new std::vector<VectorTests::UnitTest>();
-    m_TestList->push_back(&VectorTests::OperatorsTest);
-    m_TestList->push_back(&VectorTests::ProductsTest);
-    m_TestList->push_back(&VectorTests::TransposeTest);
-    m_TestList->push_back(&VectorTests::MagnitudeTest);
-}
-
+// void VectorTests::registerTests()
+// {
+//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::OperatorsTest));
+//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::ProductsTest));
+//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::TransposeTest));
+//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::MagnitudeTest));
+// }
 
 void VectorTests::setup()
 {
@@ -32,7 +23,7 @@ void VectorTests::teardown()
 
 void VectorTests::OperatorsTest()
 {
-    print("Vector Test 1 called");
+    print("Vector Test --1 called");
 //    m_pVecOne->set(0, 1);
 //    m_pVecTwo->set(2, 1);
 //

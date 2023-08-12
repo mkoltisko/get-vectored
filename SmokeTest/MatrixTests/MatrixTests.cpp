@@ -1,21 +1,14 @@
 
 #include "MatrixTests.hpp"
 
-std::vector<MatrixTests::UnitTest>* MatrixTests::m_TestList = nullptr;
 
-void MatrixTests::registerTests()
-{
-    if(m_TestList != nullptr)
-    {
-        return;
-    }
-
-    m_TestList = new std::vector<MatrixTests::UnitTest>();
-    m_TestList->push_back(&MatrixTests::OperatorsTest);
-    m_TestList->push_back(&MatrixTests::ProductsTest);
-    m_TestList->push_back(&MatrixTests::TransposeTest);
-    m_TestList->push_back(&MatrixTests::PropertiesTest);
-}
+// void MatrixTests::registerTests()
+// {
+//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::OperatorsTest));
+//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::ProductsTest));
+//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::TransposeTest));
+//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::PropertiesTest));
+// }
 
 void MatrixTests::setup()
 {
