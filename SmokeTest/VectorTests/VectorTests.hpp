@@ -31,8 +31,6 @@ protected:
 
 private:
 
-    VectorTests() = default;
-
     LinearObject* m_pVecOne{};
     LinearObject* m_pVecTwo{};
 };

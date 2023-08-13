@@ -14,8 +14,6 @@ public:
     UT_REGISTER_TEST(LinkedListTests::PrintTest)
     UT_REGISTER_END
 
-    // void registerTests() override;
-
     void setup() override;
 
     void teardown() override;
@@ -29,8 +27,6 @@ protected:
     void PrintTest();
 
 private:
-
-    LinkedListTests() = default;
 
     LinkedList<float>* m_pList{};
 };

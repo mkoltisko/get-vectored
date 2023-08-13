@@ -15,8 +15,6 @@ public:
     UT_REGISTER_TEST(MatrixTests::PropertiesTest)
     UT_REGISTER_END
 
-    // void registerTests() override;
-
     void setup() override;
 
     void teardown() override;
@@ -33,8 +31,6 @@ protected:
     void PropertiesTest();
 
 private:
-
-    MatrixTests() = default;
 
     LinearObject* m_pMatOne{};
     LinearObject* m_pMatTwo{};

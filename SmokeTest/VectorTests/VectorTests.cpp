@@ -1,14 +1,6 @@
 
 #include "VectorTests.hpp"
 
-// void VectorTests::registerTests()
-// {
-//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::OperatorsTest));
-//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::ProductsTest));
-//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::TransposeTest));
-//     m_TestList->push_back(static_cast<UnitTest>(&VectorTests::MagnitudeTest));
-// }
-
 void VectorTests::setup()
 {
     m_pVecOne = new LinearObject();

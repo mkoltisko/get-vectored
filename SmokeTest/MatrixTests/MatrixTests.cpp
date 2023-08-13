@@ -1,15 +1,6 @@
 
 #include "MatrixTests.hpp"
 
-
-// void MatrixTests::registerTests()
-// {
-//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::OperatorsTest));
-//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::ProductsTest));
-//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::TransposeTest));
-//     m_TestList->push_back(static_cast<UnitTest>(&MatrixTests::PropertiesTest));
-// }
-
 void MatrixTests::setup()
 {
     m_pMatOne = new LinearObject();
