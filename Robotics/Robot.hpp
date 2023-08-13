@@ -4,43 +4,38 @@
 
 
 #include "Joint.hpp"
+#include "../DataStructures/LinkedList.hpp"
 
+enum ROBOT_TYPE
+{
+    UNDEFINED = 0,
+    ONE_AXIS = 1,
+    PLANAR = 2,
+    CARTESIAN = 3,
+    SCARA = 4,
+    FIVE_AXIS = 5,
+    SIX_AXES = 6,
+    SEVEN_AXES = 7
+};
 
-class Robot
+class Robot : LinkedList<Joint>
 {
 public:
 
-    Robot();
+    Robot() {}
+    ~Robot() {}
 
-    ~Robot();
+    Robot(const Robot& obj) {}
+    Robot& operator= (const Robot& obj) {}
 
-    Robot(const Robot& obj);
-    Robot& operator= (const Robot& obj);
+    LinearObject forwardKinematics(LinearObject& inputAngles);
 
-    void addJoint(Joint& obj);
+    LinearObject inverseKinematics(LinearObject& endpointFrame);
 
-    void removeJoint(unsigned int index);
+    LinearObject forwardDynamics();
 
-    Joint& getJoint(unsigned int index);
-
-    LinearObject forwardKin(LinearObject& inputAngles);
-
-    LinearObject inverseKin(LinearObject& endpointFrame);
-
+    LinearObject inverseDynamics();
 private:
-
-
-    struct JOINT_NODE
-    {
-        Joint* m_pElement;
-        Robot::JOINT_NODE* m_pNext;
-        Robot::JOINT_NODE* m_pPrev;
-    };
-
-    unsigned int m_numJoints;
-
-    JOINT_NODE* m_pBaseJoint;
-    JOINT_NODE* m_pEndJoint;
 
 };
 

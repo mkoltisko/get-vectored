@@ -11,12 +11,10 @@ class LinkedList
 public:
 
     LinkedList<T>(T* start = nullptr);
-
-    LinkedList<T>(const LinkedList<T>& other);
-
     ~LinkedList<T>();
 
-    LinkedList& operator= (const LinkedList<T>& other);
+    LinkedList<T>(const LinkedList<T>& other);              // copy constructor
+    LinkedList& operator= (const LinkedList<T>& other);     // assignment operator
 
     T get(unsigned int index);
 
@@ -33,6 +31,8 @@ public:
     void remove(unsigned int index);
 
     std::string to_string();
+
+    inline unsigned int length() { return m_Size; }
 
 private:
 

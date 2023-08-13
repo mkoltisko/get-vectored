@@ -1,6 +1,8 @@
 
-#include "LinkedList.hpp"
 #include <string>
+
+#include "LinkedList.hpp"
+
 
 template<typename T>
 LinkedList<T>::LinkedList(T* start)
@@ -201,7 +203,7 @@ std::string LinkedList<T>::to_string()
             pCurrent = pCurrent->m_pNext;
             if(pCurrent != nullptr)
             {
-                resultStream << ", ";
+                resultStream << " -> ";
             }
         }
         resultStream << std::endl;
@@ -209,9 +211,12 @@ std::string LinkedList<T>::to_string()
     }
     catch(const std::exception& e)
     {
+        // object type does not go into string stream 
         // std::out << e.what() << '\n';
     }
     return nullptr;
 }
 
 template class LinkedList<float>;
+// class Joint;
+// template class LinkedList<Joint>;

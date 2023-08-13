@@ -25,7 +25,7 @@ public:
 
     void setParameters(float first, float second, float third);
 
-    LinearObject & evaluateTransform(float input);
+    LinearObject& evaluateTransform(float input);
 
     inline float getA() const { return m_a; }
     inline float getD() const { return m_d; }
